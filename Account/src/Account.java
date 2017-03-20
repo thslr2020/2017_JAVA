@@ -23,13 +23,18 @@ public class Account {
 		else balance -= debit;
 	}
 	
-	public double getbalance()
+	public double getBalance()
 	{
 		return balance;
+	}
+	
+	protected void setBalance(double balance)
+	{
+		this.balance = balance;
 	}
 	   
 	public void balance(String deposit)
 	{
-	    System.out.printf( "%s balance : %.2f\n", deposit, getbalance());
+	    System.out.printf( "%s balance : $%.2f\n", deposit, getBalance());
 	}
 }
