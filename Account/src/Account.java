@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Account {
+public abstract class Account {
 	   
 	double balance;
 
@@ -37,4 +37,8 @@ public class Account {
 	{
 	    System.out.printf( "%s balance : $%.2f\n", deposit, getBalance());
 	}
+	
+	public abstract double getWithdrawableAccount();
+
+	public abstract void passTime(int time);
 }

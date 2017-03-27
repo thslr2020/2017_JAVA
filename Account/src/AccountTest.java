@@ -2,8 +2,71 @@ import java.util.Scanner;
 
 public class AccountTest {
 	public static void main( String[] args){
-	
-	CheckingAccount account1 = new CheckingAccount(100);
+			Account account1 = new CheckingAccount(100,50,0.01,0.07);
+			Account account2 = new SavingAccount(100,0.05);
+		
+			//CheckingAccount
+			Scanner scan = new Scanner(System.in);
+			double amount;
+			
+			System.out.printf("Account1 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			System.out.println("Enter withdrawal amount for Account 1 : ");
+			amount = scan.nextDouble();
+			account1.debit(amount);
+			System.out.printf("Account1 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+//			account1.isBankrupted();
+			System.out.printf("\n");
+			account1.passTime(1);
+			account1.debit(amount);
+			System.out.printf("Account1 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			//(a)
+			System.out.printf("\n");
+			account1.passTime(5);
+			account1.debit(amount);
+			System.out.printf("Account1 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			//(a)
+			System.out.printf("\n");
+			
+			//SavingAccount
+			System.out.println();
+			System.out.printf("Account2 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			System.out.println("6 months later!");
+			System.out.printf("\n");
+			account2.passTime(6);
+			System.out.printf("Account2 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			account2.debit(50);			
+			System.out.println("Next 6 months later!");
+			System.out.printf("\n");
+			account2.passTime(12);
+			System.out.printf("Account2 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			System.out.println("Next 1 month later!");
+			System.out.printf("\n");
+			account2.passTime(13);
+			System.out.printf("Account2 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+			account2.debit(50);
+			System.out.printf("Account2 balance : $ %.2f \t현재출금가능액: %.2f\n",account1.getBalance(),account1.getWithdrawableAccount());
+	}
+}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/*	CheckingAccount account1 = new CheckingAccount(100);
 	CheckingAccount account2 = new CheckingAccount(100);
 	Scanner input = new Scanner(System.in);
 	      
@@ -35,7 +98,7 @@ public class AccountTest {
 	}
 	
 	
-}
+} */
 
 		
 	/*	Account account1 = new Account(50);
