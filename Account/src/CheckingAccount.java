@@ -18,26 +18,27 @@ public class CheckingAccount extends Account {
 		@Override
 		public void debit(double debit)
 		{
-			if(1==1)
+			if(debit>available)
 			{
-			System.out.printf("Debit amount exceeded account credit limit");
+			System.out.printf("Debit amount exceeded account credit limit\n");
 			}
-			else balance -= debit;
-				if(balance<0)
+			else available -= debit; balance-= debit;
+				if(available<0)
 				{
-				balance -= debit;
-				System.out.println("Your balance is below to zero!");
+				System.out.printf("Your balance is below to zero");
 				}
 		}
 		
-		public void passTime(int time)
+		@Override
+		public double getBalance(double balance, int time)
 		{
 			if(balance>=0)
 			{
-			System.out.printf( "%s balance : %.2f\n", time, balance -= getBalance() * interest);
+			    return balance * Math.pow(1+interest,time);
 			}
-			else System.out.printf( "%s balance : %.2f\n", time, balance -= getBalance() * loan_interest);
-			}
+			else return balance * Math.pow(1+interest,time);
+
+		}
 		
 		public void setWithdrawableAccount(double available)
 		{
@@ -48,6 +49,11 @@ public class CheckingAccount extends Account {
 		{
 		return available;			
 		}	
+		
+		public void passTime(int time)
+		{
+		this.time = time;
+		}
 		
 		public void isBankrupted(double balance){
 			boolean isBankrupted = balance - debit < 0;{
