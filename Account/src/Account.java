@@ -1,26 +1,28 @@
 import java.util.Scanner;
 
-public abstract class Account {
+public abstract class Account implements Valuable{
 	   
 	double balance;
+	double amount;
+	double debit;
 
 	public Account (double balance)
 	{
 		this.balance = balance;
 	}
 	
-	public void credit (double credit)
+	public void credit (double amount)
 	{
-		balance += credit;
+		balance += amount;
 	}
 	
-	public void debit (double debit)
+	public void debit (double amount) throws Exception
 	{
 		if(debit>balance)
 		{
 		System.out.printf("Debit amount exceeded account balance");
 		}
-		else balance -= debit;
+		else balance -= amount;
 	}
 	
 	public double getBalance()
@@ -41,4 +43,11 @@ public abstract class Account {
 	public abstract double getWithdrawableAccount();
 
 	public abstract void passTime(int time);
+	
+	public abstract void passTime();
+
+	public void setBalance() {
+		// TODO Auto-generated method stub
+		
+	}
 }

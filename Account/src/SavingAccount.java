@@ -1,21 +1,22 @@
-public class SavingAccount extends Account {
+public class SavingAccount extends Account{
 
 	private double interest;
-	private double debit;
-	private int time;
+	private int month;
+	private double value;
+	private double creditLimit;
 	private double available;
 	
-	SavingAccount(double balance, double interest) {  // 왜 이 식을 사용해야 하는지?
+	SavingAccount(double balance, double interest) {
 		super(balance);
 		this.interest = interest;
 	}
 	
 	@Override
-	public void debit(double debit)
+	public void debit(double debit) throws Exception
 	{
-		if(time<1)
+		if(month<12)
 		{
-		System.out.printf("You can't withdraw your money before 1yr passed.");
+		throw new Exception("You can't withdraw your money before 1yr passed.");
 		}
 		else balance -= debit;
 			if(balance<0)
@@ -24,38 +25,60 @@ public class SavingAccount extends Account {
 			}
 	}
 	
-	public void nextMonth(String nextMonth)
+	@Override
+	public double getBalance()
 	{
-		if(balance>=0)
-		{
-		    System.out.printf( "%s balance : %.2f\n", nextMonth, balance += getBalance()*Math.pow(1+interest, passTime(time)));
-		}
-		else System.out.printf( "You don't have money to withdrwal");
-
+		return balance;
 	}
 	
-	
-	
-	public void setWithdrawableAccount(double available)
-	{
-	available = balance;
-	}
 	
 	@Override
 	public double getWithdrawableAccount()
 	{
-	return available;			
+		if(month<12){
+			return 0;
+		} else { return available = getBalance() + creditLimit;			
+		}
 	}	
 	
-	public double passTime(int time)
+	@Override	
+	public void passTime(int month)
 	{
-	this.time = time;
+		if(month<12)
+		{
+			this.balance = balance;
+		} else { this.balance = balance + Math.pow(interest, month);
+		}
 	}
 	
-	boolean isBankrupted = balance - debit < 0;{
-		if(isBankrupted) {
-			System.out.println("Account 1 is Bankrupted...");
+	public void passTime()
+	{
+		if(month<12)
+		{
+			this.balance = balance;
+		} else { this.balance = balance + Math.pow(interest, month);
 		}
+	}
+	
+//	boolean isBankrupted = balance - debit < 0;{
+//		if(isBankrupted) {
+//			System.out.println("Account 1 is Bankrupted...");
+//		}
+//	}
+	
+	@Override
+	public double estimateValue(int month) {
+		return balance * Math.pow(1+interest, month);
+	}
+	
+	@Override
+	public double estimateValue() {
+		month++;
+		return balance * Math.pow(1+interest, month);
+	}
+	
+	public String toString() {
+		return "SavingAccount Balance : " + balance;
 	}
 	
 }
